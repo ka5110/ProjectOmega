@@ -31,7 +31,7 @@ steps:
 
   - task: Gradle@2
     inputs:
-      gradleWrapperFile: './RepClient/android/'
+      gradleWrapperFile: './RepClient/android/gradlew'
       tasks: 'assembleDebug'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
