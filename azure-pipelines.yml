@@ -29,6 +29,7 @@ steps:
     inputs:
       workingDirectory: ./RepClient/android
       script: './gradlew assembleDebug' 
+    displayName: 'Gradle AssembleDebug '
 
   - task: PublishPipelineArtifact@1
     inputs:
