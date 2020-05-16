@@ -49,7 +49,7 @@ steps:
   - task: AzureFileCopy@4
     inputs:
       SourcePath: '$(Build.ArtifactStagingDirectory)'
-      azureSubscription: 'Pay-As-You-Go(ef03e228-1cbf-4781-b858-977cc79e1e6e)'
+      azureSubscription: 'Pay-As-You-Go (ef03e228-1cbf-4781-b858-977cc79e1e6e)'
       Destination: 'AzureBlob'
       storage: 'csb10032000acbf47f5'
       ContainerName: 'repclient-dev'
