@@ -39,7 +39,4 @@ steps:
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: $(System.DefaultWorkingDirectory)/RepClient/android/app/build/outputs/apk/debug
-      artifactName: 'app-debug.apk'
-
-    
-
+      artifactName: 'repClient-APK-$(Build.BuildId)'
