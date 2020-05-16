@@ -8,3 +8,6 @@ COPY ${DEPENDENCY}/META-INF ${appDir}/META-INF
 COPY ${DEPENDENCY}/BOOT-INF/classes ${appDir}
 EXPOSE 5000
 ENTRYPOINT ["java","-cp","com/project/omega/*:lib/*:.","com.project.Application"]
+
+
+afsdfdasafds
