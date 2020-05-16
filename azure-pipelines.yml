@@ -33,7 +33,7 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: $(System.DefaultWorkingDirectory)/RepClient/android/app/build/outputs/apk/debug
+      targetPath: $(Pipeline.Workspace)/RepClient/android/app/build/outputs/apk/debug
       artifactName: 'app-debug.apk'
 
   - task: AzureFileCopy@1
