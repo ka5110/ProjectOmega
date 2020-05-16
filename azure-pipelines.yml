@@ -27,7 +27,7 @@ steps:
 
   - task: CmdLine@2
     inputs:
-      workingDirectory: $(Pipeline.Workspace)/RepClient/android
+      workingDirectory: ./android
       script: './gradlew assembleDebug' 
     displayName: 'Gradle AssembleDebug '
 
