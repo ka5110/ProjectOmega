@@ -27,7 +27,7 @@ steps:
 
   - task: CmdLine@2
     inputs:
-      workingDirectory: ./android
+      workingDirectory: ./RepClient/android
       script: './gradlew assembleDebug' 
     displayName: 'Gradle AssembleDebug '
 
