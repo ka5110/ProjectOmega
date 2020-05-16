@@ -27,6 +27,7 @@ steps:
 
   - task: Gradle@2
     inputs:
+      workingDirectory: ./RepClient/android/
       gradleWrapperFile: 'gradlew'
       #cwd: # Optional
       #options: # Optional
