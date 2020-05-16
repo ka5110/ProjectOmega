@@ -1,0 +1,63 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm install -g @angular/cli
+      npm install -g @ionic/cli
+      npm install --save @capacitor/core @capacitor/cli
+      npm install
+      ionic build
+      npx cap add android
+    displayName: 'npm install and ionic build'
+
+  - task: Gradle@2
+    inputs:
+      gradleWrapperFile: 'gradlew'
+      #cwd: # Optional
+      #options: # Optional
+      tasks: 'assembleDebug' # A list of tasks separated by spaces, such as 'build test'
+      #publishJUnitResults: true
+      #testResultsFiles: '**/TEST-*.xml' # Required when publishJUnitResults == True
+      #testRunTitle: # Optional
+      #codeCoverageToolOption: 'None' # Optional. Options: none, cobertura, jaCoCo
+      #codeCoverageClassFilesDirectories: 'build/classes/main/' # Required when codeCoverageToolOption == False
+      #codeCoverageClassFilter: # Optional. Comma-separated list of filters to include or exclude classes from collecting code coverage. For example: +:com.*,+:org.*,-:my.app*.*
+      #codeCoverageFailIfEmpty: false # Optional
+      #jdkVersionOption: 'default' # Optional. Options: default, 1.11, 1.10, 1.9, 1.8, 1.7, 1.6
+      #jdkArchitectureOption: 'x64' # Optional. Options: x86, x64
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: $(System.DefaultWorkingDirectory)/RepClient/android/app/build/outputs/apk/debug
+      artifactName: 'app-debug'
+
+      
+  - task: AzureFileCopy@4
+    inputs:
+      SourcePath: '$(Build.ArtifactStagingDirectory)'
+      azureSubscription: 'Pay-As-You-Go(ef03e228-1cbf-4781-b858-977cc79e1e6e)'
+      Destination: 'AzureBlob'
+      storage: 'csb10032000acbf47f5'
+      ContainerName: 'repclient-dev'
+      #additionalArgumentsForBlobCopy: # Optional
+      #additionalArgumentsForVMCopy: # Optional
+      #enableCopyPrerequisites: false # Optional
+
+
+
+
+
