@@ -27,13 +27,13 @@ steps:
 
   - task: CmdLine@2
     inputs:
-      workingDirectory: ./RepClient/android
+      workingDirectory: $(Pipeline.Workspace)/RepClient/android
       script: './gradlew assembleDebug' 
     displayName: 'Gradle AssembleDebug '
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: $(Pipeline.Workspace)/RepClient/android/app/build/outputs/apk/debug
+      targetPath: $(System.DefaultWorkingDirectory)/RepClient/android/app/build/outputs/apk/debug
       artifactName: 'app-debug.apk'
 
   - task: AzureFileCopy@1
