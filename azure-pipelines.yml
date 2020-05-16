@@ -22,6 +22,7 @@ steps:
       npm install
       ionic build
       npx cap add android
+    workingDirectory: ./RepClient
     displayName: 'npm install and ionic build'
 
   - task: Gradle@2
